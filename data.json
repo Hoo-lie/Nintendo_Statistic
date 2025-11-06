@@ -1,0 +1,44 @@
+{ "ventes_nes": [
+  {
+    "Période": "1982 - 1985",
+    "Japon": 4330000,
+    "Les Amériques": null,
+    "Autre": null
+  },
+  {
+    "Période": "1985 - 1986",
+    "Japon": 4110000,
+    "Les Amériques": 210000,
+    "Autre": 20000
+  },
+  {
+    "Période": "1986 - 1987",
+    "Japon": 2310000,
+    "Les Amériques": 1810000,
+    "Autre": 160000
+  },
+  {
+    "Période": "1987 - 1988",
+    "Japon": 1770000,
+    "Les Amériques": 5360000,
+    "Autre": 440000
+  },
+  {
+    "Période": "1988 - 1989",
+    "Japon": 1420000,
+    "Les Amériques": 9320000,
+    "Autre": 230000
+  },
+  {
+    "Période": "1989 - 1990",
+    "Japon": 880000,
+    "Les Amériques": 5310000,
+    "Autre": 330000
+  },
+  {
+    "Période": "total",
+    "Japon": 14820000,
+    "Les Amériques": 22010000,
+    "Autre": 1180000
+  }
+]}

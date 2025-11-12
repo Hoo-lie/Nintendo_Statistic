@@ -48,13 +48,29 @@ body {
     z-index: -1;
 }
 
-.character {
+.container_character {
     position: fixed;
-    height: 100px;
+    overflow: hidden;
+    width: 60px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
+    object-fit: none;
+}
+
+.character {
+    height: 70px;
+    transform: translateX(0);
+}
+
+@keyframes walk {
+  from { transform: translateX(-120px); }
+  to { transform: translateX(0px); }
+}
+
+.character.walking {
+  animation: walk 0.6s steps(2) infinite;
 }
 
 nav {
@@ -82,8 +98,8 @@ nav {
 }
 
 .graph1 {
-    width: 600px;
-    height: 300px;
+    width: 35%;
+    height: 25%;
     position: relative;
     background-color: rgb(0, 0, 0);
     padding: 20px;
@@ -94,7 +110,7 @@ nav {
 }
 
 .img_gameboy {
-    width: 500px;
+    width: 30%;
     margin-right: auto;
     margin-left: 5%;
     margin-top: 7%;

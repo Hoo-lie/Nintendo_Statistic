@@ -46,6 +46,28 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-animate();
+const c = document.querySelector('.character');
+let lastScroll = 0;
+let lastDir = 'down';
+let timeout;
 
+window.addEventListener('scroll', () => {
+  const dir = scrollY > lastScroll ? 'down' : 'up';
 
+  if (dir !== lastDir) {
+    c.src = `img/Bonhomme/sprite_${dir}.png`;
+    lastDir = dir;
+  }
+
+  // active la marche
+  c.classList.add('walking');
+
+  // revient à idle (frame du milieu)
+  clearTimeout(timeout);
+  timeout = setTimeout(() => {
+    c.classList.remove('walking');
+    c.style.transform = 'translateX(0px)'; // ✅ idle
+  }, 150);
+
+  lastScroll = scrollY;
+});

@@ -41,4 +41,40 @@
     "Les Amériques": 22010000,
     "Autre": 1180000
   }
-]}
+], 
+
+"ventes_consoles_portables" : [
+  {
+    "console": "Nintendo DS",
+    "ventes totales": "154  020 000"
+  },
+  {
+    "console": "Switch",
+    "ventes totales": "154 010 000"
+  },
+  {
+    "console": "Game Boy / Game Boy Color",
+    "ventes totales": "118 690 000"
+  },
+  {
+    "console": "Game Boy Advance",
+    "ventes totales": "81 510 000"
+  },
+  {
+    "console": "PSP",
+    "ventes totales": "80 000 000"
+  },
+  {
+    "console": "Nintendo 3DS",
+    "ventes totales": "75 940 000"
+  },
+  {
+    "console": "PSVITA",
+    "ventes totales": "16 100 000"
+  },
+  {
+    "console": "Game Gear",
+    "ventes totales": "10 620 000"
+  }
+]
+}

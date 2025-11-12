@@ -98,8 +98,8 @@ nav {
 }
 
 .graph1 {
-    width: 35%;
-    height: 25%;
+    width: clamp(400px, 35vw, 100%);
+    height: clamp(180px, 35vw, 100%);
     position: relative;
     background-color: rgb(0, 0, 0);
     padding: 20px;
@@ -114,4 +114,13 @@ nav {
     margin-right: auto;
     margin-left: 5%;
     margin-top: 7%;
+}
+
+@media (max-width: 700px){
+  .etape1 {
+    flex-direction: column;
+  }
+  .graph1 {
+    margin-right: auto;
+  }
 }

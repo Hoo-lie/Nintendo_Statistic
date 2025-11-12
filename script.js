@@ -32,6 +32,7 @@ fetch('data.json')
   .catch(err => console.error(err));
 
 
+// background
 const grid = document.querySelector('.grid-layer');
 let targetY = 0;
 let currentY = 0;  
@@ -46,6 +47,10 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
+animate();
+
+
+// Character animation
 const c = document.querySelector('.character');
 let lastScroll = 0;
 let lastDir = 'down';
@@ -59,14 +64,14 @@ window.addEventListener('scroll', () => {
     lastDir = dir;
   }
 
-  // active la marche
+  // activate animation
   c.classList.add('walking');
 
-  // revient à idle (frame du milieu)
+  // goes back to idle
   clearTimeout(timeout);
   timeout = setTimeout(() => {
     c.classList.remove('walking');
-    c.style.transform = 'translateX(0px)'; // ✅ idle
+    c.style.transform = 'translateX(0px)'; 
   }, 150);
 
   lastScroll = scrollY;

@@ -53,7 +53,7 @@
     "ventes totales": "154 010 000"
   },
   {
-    "console": "Game Boy / Game Boy Color",
+    "console": "Game Boy",
     "ventes totales": "118 690 000"
   },
   {
@@ -75,6 +75,764 @@
   {
     "console": "Game Gear",
     "ventes totales": "10 620 000"
+  }
+],
+
+"NintendovsSony" : [
+  {
+    "Année": 1996,
+    "Nintendo": 16570000,
+    "Sony": 9200000
+  },
+  {
+    "Année": 1997,
+    "Nintendo": 22930000,
+    "Sony": 19370000
+  },
+  {
+    "Année": 1998,
+    "Nintendo": 23090000,
+    "Sony": 21600000
+  },
+  {
+    "Année": 1999,
+    "Nintendo": 24450000,
+    "Sony": 19910000
+  },
+  {
+    "Année": 2000,
+    "Nintendo": 21840000,
+    "Sony": 18510000
+  },
+  {
+    "Année": 2001,
+    "Nintendo": 6330000,
+    "Sony": 25470000
+  },
+  {
+    "Année": 2002,
+    "Nintendo": 21250000,
+    "Sony": 29300000
+  },
+  {
+    "Année": 2003,
+    "Nintendo": 7365000,
+    "Sony": 23410000
+  },
+  {
+    "Année": 2004,
+    "Nintendo": 22610000,
+    "Sony": 21910000
+  }
+], 
+
+"profit" : [
+  {
+    "Année": 1999,
+    "Profit net (en million de yen)": 85817,
+    "Profit net (en euro)": 477571605
+  },
+  {
+    "Année": 2000,
+    "Profit net (en million de yen)": 56061,
+    "Profit net (en euro)": 311979465
+  },
+  {
+    "Année": 2001,
+    "Profit net (en million de yen)": 96603,
+    "Profit net (en euro)": 537595695
+  },
+  {
+    "Année": 2002,
+    "Profit net (en million de yen)": 106444,
+    "Profit net (en euro)": 592360860
+  },
+  {
+    "Année": 2003,
+    "Profit net (en million de yen)": 67267,
+    "Profit net (en euro)": 374340855
+  },
+  {
+    "Année": 2004,
+    "Profit net (en million de yen)": 33194,
+    "Profit net (en euro)": 184724610
+  },
+  {
+    "Année": 2005,
+    "Profit net (en million de yen)": 87416,
+    "Profit net (en euro)": 486470040
+  },
+  {
+    "Année": 2006,
+    "Profit net (en million de yen)": 98378,
+    "Profit net (en euro)": 547473570
+  },
+  {
+    "Année": 2007,
+    "Profit net (en million de yen)": 174290,
+    "Profit net (en euro)": 969923850
+  },
+  {
+    "Année": 2008,
+    "Profit net (en million de yen)": 257342,
+    "Profit net (en euro)": 1432108230
+  },
+  {
+    "Année": 2009,
+    "Profit net (en million de yen)": 279089,
+    "Profit net (en euro)": 1553130285
+  },
+  {
+    "Année": 2010,
+    "Profit net (en million de yen)": 228635,
+    "Profit net (en euro)": 1272353775
+  },
+  {
+    "Année": 2011,
+    "Profit net (en million de yen)": 77621,
+    "Profit net (en euro)": 431960865
+  },
+  {
+    "Année": 2012,
+    "Profit net (en million de yen)": -43204,
+    "Profit net (en euro)": -240430260
+  },
+  {
+    "Année": 2013,
+    "Profit net (en million de yen)": 7099,
+    "Profit net (en euro)": 39505935
+  },
+  {
+    "Année": 2014,
+    "Profit net (en million de yen)": -23222,
+    "Profit net (en euro)": -129230430
+  },
+  {
+    "Année": 2015,
+    "Profit net (en million de yen)": 41843,
+    "Profit net (en euro)": 232856295
+  },
+  {
+    "Année": 2016,
+    "Profit net (en million de yen)": 16505,
+    "Profit net (en euro)": 91850325
+  },
+  {
+    "Année": 2017,
+    "Profit net (en million de yen)": 102574,
+    "Profit net (en euro)": 570824310
+  },
+  {
+    "Année": 2018,
+    "Profit net (en million de yen)": 139590,
+    "Profit net (en euro)": 776818350
+  },
+  {
+    "Année": 2019,
+    "Profit net (en million de yen)": 194009,
+    "Profit net (en euro)": 1079660085
+  },
+  {
+    "Année": 2020,
+    "Profit net (en million de yen)": 258641,
+    "Profit net (en euro)": 1439337165
+  },
+  {
+    "Année": 2021,
+    "Profit net (en million de yen)": 480376,
+    "Profit net (en euro)": 2673292440
+  },
+  {
+    "Année": 2022,
+    "Profit net (en million de yen)": 477691,
+    "Profit net (en euro)": 2658350415
+  },
+  {
+    "Année": 2023,
+    "Profit net (en million de yen)": 432768,
+    "Profit net (en euro)": 2408353920
+  },
+  {
+    "Année": 2024,
+    "Profit net (en million de yen)": 490602,
+    "Profit net (en euro)": 2730200130
+  }
+],
+
+"ventes_nintendo" : [
+  {
+    "Année": 1985,
+    "NES": 4340000,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1986,
+    "NES": 4280000,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1987,
+    "NES": 7570000,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1988,
+    "NES": 10970000,
+    "Game Boy": 1090000,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1989,
+    "NES": 6520000,
+    "Game Boy": 2840000,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1990,
+    "NES": 10430000,
+    "Game Boy": 8060000,
+    "SNES": 1440000,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1991,
+    "NES": 7990000,
+    "Game Boy": 10670000,
+    "SNES": 6590000,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1992,
+    "NES": 3530000,
+    "Game Boy": 7800000,
+    "SNES": 13030000,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1993,
+    "NES": 1110000,
+    "Game Boy": 7470000,
+    "SNES": 11060000,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1994,
+    "NES": 400000,
+    "Game Boy": 5580000,
+    "SNES": 4410000,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1995,
+    "NES": 80000,
+    "Game Boy": 4160000,
+    "SNES": 5780000,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1996,
+    "NES": 70000,
+    "Game Boy": 7090000,
+    "SNES": 3300000,
+    "Nintendo 64": 6110000,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1997,
+    "NES": 40000,
+    "Game Boy": 11020000,
+    "SNES": 1850000,
+    "Nintendo 64": 10020000,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1998,
+    "NES": 50000,
+    "Game Boy": 13550000,
+    "SNES": 1530000,
+    "Nintendo 64": 7960000,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 1999,
+    "NES": 50000,
+    "Game Boy": 17240000,
+    "SNES": 130000,
+    "Nintendo 64": 7030000,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2000,
+    "NES": 50000,
+    "Game Boy": 18860000,
+    "SNES": 90000,
+    "Nintendo 64": 2840000,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2001,
+    "NES": 60000,
+    "Game Boy": 4690000,
+    "SNES": 10000,
+    "Nintendo 64": 500000,
+    "Game Boy Advance": 1070000,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2002,
+    "NES": 60000,
+    "Game Boy": 280000,
+    "SNES": 10000,
+    "Nintendo 64": 10000,
+    "Game Boy Advance": 17090000,
+    "NintendoGameCube": 3800000,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2003,
+    "NES": 30000,
+    "Game Boy": null,
+    "SNES": 10000,
+    "Nintendo 64": null,
+    "Game Boy Advance": 1565000,
+    "NintendoGameCube": 5760000,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2004,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": 17590000,
+    "NintendoGameCube": 5020000,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2005,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": 15400000,
+    "NintendoGameCube": 3920000,
+    "Nintendo DS": 5270000,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2006,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": 8330000,
+    "NintendoGameCube": 2350000,
+    "Nintendo DS": 11460000,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2007,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": 4340000,
+    "NintendoGameCube": 730000,
+    "Nintendo DS": 23560000,
+    "Wii": 5840000,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2008,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": 1590000,
+    "NintendoGameCube": 160000,
+    "Nintendo DS": 30310000,
+    "Wii": 18610000,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2009,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": 420000,
+    "NintendoGameCube": null,
+    "Nintendo DS": 27110000,
+    "Wii": 25950000,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2010,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": 40000,
+    "NintendoGameCube": null,
+    "Nintendo DS": 17520000,
+    "Wii": 20530000,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2011,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": 5100000,
+    "Wii": 15080000,
+    "Nintendo 3DS": 3610000,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2012,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": 2350000,
+    "Wii": 9840000,
+    "Nintendo 3DS": 13530000,
+    "Wii U": null,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2013,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": 130000,
+    "Wii": 3980000,
+    "Nintendo 3DS": 13950000,
+    "Wii U": 3450000,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2014,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": 20000,
+    "Wii": 1220000,
+    "Nintendo 3DS": 12240000,
+    "Wii U": 2720000,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2015,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": 10000,
+    "Wii": 460000,
+    "Nintendo 3DS": 8730000,
+    "Wii U": 3380000,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2016,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": 110000,
+    "Nintendo 3DS": 6790000,
+    "Wii U": 3260000,
+    "Nintendo Switch": null
+  },
+  {
+    "Année": 2017,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": 7270000,
+    "Wii U": 760000,
+    "Nintendo Switch": 2740000
+  },
+  {
+    "Année": 2018,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": 6400000,
+    "Wii U": null,
+    "Nintendo Switch": 15050000
+  },
+  {
+    "Année": 2019,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": 2550000,
+    "Wii U": null,
+    "Nintendo Switch": 16950000
+  },
+  {
+    "Année": 2020,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": 690000,
+    "Wii U": null,
+    "Nintendo Switch": 21030000
+  },
+  {
+    "Année": 2021,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": 170000,
+    "Wii U": null,
+    "Nintendo Switch": 28830000
+  },
+  {
+    "Année": 2022,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": 23060000
+  },
+  {
+    "Année": 2023,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": 17970000
+  },
+  {
+    "Année": 2024,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": 15700000
+  },
+  {
+    "Année": 2025,
+    "NES": null,
+    "Game Boy": null,
+    "SNES": null,
+    "Nintendo 64": null,
+    "Game Boy Advance": null,
+    "NintendoGameCube": null,
+    "Nintendo DS": null,
+    "Wii": null,
+    "Nintendo 3DS": null,
+    "Wii U": null,
+    "Nintendo Switch": 10800000
   }
 ]
 }

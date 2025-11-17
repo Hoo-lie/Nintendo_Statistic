@@ -6,35 +6,52 @@ fetch('data.json')
     const rows = data.ventes_nes.filter(r => r.Période !== 'total');
     const labels = rows.map(r => r.Période);
     const regions = Object.keys(rows[0]).filter(k => k !== 'Période');
-    const colours = ['#ec4949ff','#4959ecff', '#5cec49ff'];
+    const colours = ['#ec4949ff', '#4959ecff', '#5cec49ff'];
 
     new Chart(ctx, {
       type: 'bar',
       data: {
         labels,
-        datasets: regions.map((r,i) => ({
+        datasets: regions.map((r, i) => ({
           label: r,
           data: rows.map(row => row[r] || 0),
           backgroundColor: colours[i % colours.length],
         }))
       },
       options: {
-    scales: {
-      x: { grid: { color: 'rgba(0,255,0,0.1)' }, ticks: { color: '#00ff00', font: { family: 'monospace' } } },
-      y: { grid: { color: 'rgba(0,255,0,0.1)' }, ticks: { color: '#00ff00', font: { family: 'monospace' } } }
-    },
-    plugins: {
-      legend: { labels: { color: '#00ff00', font: { family: 'monospace' } } }
-    }
-  }
+        scales: {
+          x: { grid: { color: 'rgba(0,255,0,0.1)' }, ticks: { color: '#00ff00', font: { family: 'monospace' } } },
+          y: { grid: { color: 'rgba(0,255,0,0.1)' }, ticks: { color: '#00ff00', font: { family: 'monospace' } } }
+        },
+        plugins: {
+          legend: { labels: { color: '#00ff00', font: { family: 'monospace' } } },
+          title: {
+            display: true,          // Affiche le titre
+            text: 'Ventes mondiale de la NES', // Le texte du titre
+            color: '#00ff00',       // Couleur du texte
+            font: {
+              family: 'monospace',
+              weight: 'normal'
+            }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(0,0,0,0.9)',
+            titleColor: '#00ff00',
+            bodyColor: '#00ff00',
+            borderColor: '#00ff00',
+            borderWidth: 1,
+            titleFont: { family: 'monospace', weight: 'normal' },
+            bodyFont: { family: 'monospace' },
+            cornerRadius: 0
+          }
+        }
+      }
     });
   })
   .catch(err => console.error(err));
 
-// -----------------------------
-// PODIUM + CLASSEMENT (SVG) — PORTABLE CONSOLES
-// -----------------------------
 
+// PODIUM + CLASSEMENT (SVG) — PORTABLE CONSOLES
 fetch("data.json")
   .then(res => res.json())
   .then(json => {
@@ -54,11 +71,9 @@ fetch("data.json")
     const w = 350;
     const h = 350;
 
-    // -----------------------------
     // SVG 1 : PODIUM
-    // -----------------------------
     let podiumSVG = `
-   <svg class="svg_podium" viewBox="0 0 350 250" style="max-width:100%; height:auto; display:block;">
+   <svg class="svg_podium" viewBox="0 0 350 250">
 
       <text x="0" y="20">Top consoles portables</text>
     `;
@@ -90,9 +105,7 @@ fetch("data.json")
 
     podiumSVG += `</svg>`;
 
-    // -----------------------------
-    // CLASSEMENT (div responsive)
-    // -----------------------------
+    // CLASSEMENT
     const rankingDiv = document.getElementById("liste_classement");
     rankingDiv.innerHTML = ""; // vide au cas où
 
@@ -125,21 +138,617 @@ fetch("data.json")
   })
   .catch(err => console.error(err));
 
+const ctx3 = document.getElementById('nintendovssony').getContext('2d');
 
+fetch('data.json')
+  .then(res => res.json())
+  .then(json => {
+    const rows = json.NintendovsSony;
+
+    const labels = rows.map(r => r.Année);
+    const nintendoData = rows.map(r => r.Nintendo);
+    const sonyData = rows.map(r => r.Sony);
+
+    new Chart(ctx3, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Nintendo',
+            data: nintendoData,
+            borderColor: 'rgba(236,73,73,1)',
+            backgroundColor: 'rgba(236,73,73,0.3)',
+            fill: true,        // remplit sous la courbe
+            tension: 0.3,       // courbes lissées
+            // --- CARRÉS REMPLIS ---
+            pointStyle: "rect",
+            pointRadius: 4,
+            pointHoverRadius: 7,
+            pointBackgroundColor: 'rgba(236,73,73,1)',
+            pointBorderColor: 'rgba(236,73,73,0.3)',
+            pointBorderWidth: 0,
+          },
+          {
+            label: 'Sony',
+            data: sonyData,
+            borderColor: 'rgba(73,89,236,1)',
+            backgroundColor: 'rgba(73,89,236,0.3)',
+            fill: true,
+            tension: 0.3,
+            // --- CARRÉS REMPLIS ---
+            pointStyle: "rect",
+            pointRadius: 4,
+            pointHoverRadius: 7,
+            pointBackgroundColor: 'rgba(73,89,236,1)',
+            pointBorderColor: 'rgba(73,89,236,0.3)',
+            pointBorderWidth: 0,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: { color: '#00ff00', font: { family: 'monospace' } }
+          },
+          title: {
+            display: true,          // Affiche le titre
+            text: 'Ventes de consoles Nintendo vs Sony', // Le texte du titre
+            color: '#00ff00',       // Couleur du texte
+            font: {
+              family: 'monospace',
+              weight: 'normal'
+            }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(0,0,0,0.9)',
+            titleColor: '#00ff00',
+            bodyColor: '#00ff00',
+            borderColor: '#00ff00',
+            borderWidth: 1,
+            titleFont: { family: 'monospace', weight: 'normal' },
+            bodyFont: { family: 'monospace' },
+            cornerRadius: 0,
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#00ff00', font: { family: 'monospace' } },
+            grid: { color: 'rgba(0,255,0,0.1)' }
+          },
+          y: {
+            ticks: { color: '#00ff00', font: { family: 'monospace' } },
+            grid: { color: 'rgba(0,255,0,0.1)' }
+          }
+        }
+      }
+    });
+  })
+  .catch(err => console.error(err));
+
+
+// Graph 4 : Profits de nintendo
+fetch("data.json")
+  .then(res => res.json())
+  .then(json => {
+
+    const rows = json.profit;
+    const years = rows.map(r => r["Année"]);
+    const values = rows.map(r => r["Profit net (en million de yen)"]);
+    const euroValues = rows.map(r => r["Profit net (en euro)"]);
+
+    // Découper en deux courbes
+    const index2014 = years.indexOf(2014);
+    const years1 = years.slice(0, index2014 + 1);
+    const values1 = values.slice(0, index2014 + 1);
+
+    const years2 = years.slice(index2014);
+    const values2 = values.slice(index2014);
+
+    // Dimensions SVG
+    const w = 600;
+    const h = 300;
+    const padding = 40;
+
+    // SCALING X initial = seulement years1
+    let minYear = Math.min(...years1);
+    let maxYear = Math.max(...years1);
+
+    // SCALING Y initial = seulement values1
+    let minVal = Math.min(...values1);
+    let maxVal = Math.max(...values1);
+
+    // SCALE FUNCTIONS
+    let x = yr => padding + ((yr - minYear) / (maxYear - minYear)) * (w - padding * 2);
+    let y = val => h - padding - ((val - minVal) / (maxVal - minVal)) * (h - padding * 2);
+
+    // Convertir un tableau → path SVG
+    function generatePath(yrs, vals) {
+      return yrs.map((yr, i) =>
+        `${i === 0 ? "M" : "L"} ${x(yr)} ${y(vals[i])}`
+      ).join(" ");
+    }
+
+    const path1 = generatePath(years1, values1);
+    const path2 = generatePath(years2, values2);
+
+    // -----------------------------------------------
+    // SVG INITIAL (ne montre que l’échelle de years1)
+    // -----------------------------------------------
+    const svg = `
+<svg id="profit_svg" width="100%" viewBox="0 0 ${w} ${h}" style="overflow: visible;">
+
+  <!-- GRID VERTICALE -->
+  ${years1.map(yr => `
+    <line class="xgrid"
+      x1="${x(yr)}" y1="${padding}"
+      x2="${x(yr)}" y2="${h - padding}"
+      stroke="rgba(0,255,0,0.12)"
+      stroke-width="1"
+    />
+  `).join("")}
+
+  <!-- GRID HORIZONTALE -->
+  ${[0, 0.25, 0.5, 0.75, 1].map(p => {
+      const val = minVal + p * (maxVal - minVal);
+      return `
+      <line class="ygrid"
+        x1="${padding}" y1="${y(val)}"
+        x2="${w - padding}" y2="${y(val)}"
+        stroke="rgba(0,255,0,0.12)"
+        stroke-width="1"
+      />
+    `;
+    }).join("")}
+
+  <!-- TITRE -->
+  <text x="${w / 2}" y="25" text-anchor="middle" fill="#00ff00" font-size="18" font-family="monospace">
+    Profit net de Nintendo
+  </text>
+
+  <!-- LABELS AXE X (initial = seulement years1) -->
+  ${years1.map(yr => `
+    <text class="xLabel"
+      x="${x(yr)}" y="${h - 5}"
+      text-anchor="middle"
+      fill="#00ff00"
+      font-size="12" font-family="monospace">
+      ${yr}
+    </text>
+  `).join("")}
+
+  <!-- LABELS AXE Y -->
+  ${[0, 0.5, 1].map(f => {
+      const val = minVal + f * (maxVal - minVal);
+      return `
+      <text class="yLabel"
+        x="5"
+        y="${y(val) + 4}"
+        fill="#00ff00"
+        font-size="12"
+        font-family="monospace"
+        data-factor="${f}">
+        ${Math.round(val)}
+      </text>
+    `;
+    }).join("")}
+
+  <!-- COURBE 1 -->
+  <path id="p1" d="${path1}" stroke="#00ff00" fill="none" stroke-width="3"/>
+
+  <!-- COURBE 2 -->
+  <path id="p2" d="${path2}" stroke="#00ff00" fill="none" stroke-width="3"/>
+
+  <!-- POINTS -->
+  ${years.map((yr, i) => `
+    <circle class="profit-point"
+      cx="${x(yr)}"
+      cy="${y(values[i])}"
+      r="10"
+      fill="transparent"
+      data-year="${yr}"
+      data-yen="${values[i]}"
+      data-euro="${euroValues[i]}"
+      style="cursor:pointer;"
+    />
+  `).join("")}
+
+</svg>
+`;
+
+    document.getElementById("profit").innerHTML = svg;
+
+    // TOOLTIP
+    const tooltip = document.getElementById("profitTooltip");
+    const points = document.querySelectorAll(".profit-point");
+
+    points.forEach(pt => {
+      pt.addEventListener("mouseenter", e => {
+        const year = pt.dataset.year;
+        const yen = pt.dataset.yen;
+        const euro = pt.dataset.euro;
+
+        tooltip.innerHTML = `
+          <b>${year}</b><br>
+          ${yen} M¥<br>
+          ${Number(euro).toLocaleString()} €
+        `;
+        tooltip.style.opacity = 1;
+        tooltip.style.borderRadius = "0";
+
+      });
+
+      pt.addEventListener("mouseleave", () => {
+        tooltip.style.opacity = 0;
+      });
+
+      pt.addEventListener("mousemove", e => {
+        tooltip.style.left = e.clientX + "px";
+        tooltip.style.top = e.clientY + "px";
+      });
+    });
+
+    // ANIMATION DES PATHS
+    const p1 = document.getElementById("p1");
+    const p2 = document.getElementById("p2");
+
+    const len1 = p1.getTotalLength();
+    const len2 = p2.getTotalLength();
+
+    p1.style.strokeDasharray = len1;
+    p1.style.strokeDashoffset = len1;
+
+    p2.style.strokeDasharray = len2;
+    p2.style.strokeDashoffset = len2;
+
+    // Observer Path1
+    const obs1 = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          p1.style.transition = "stroke-dashoffset 2s linear";
+          p1.style.strokeDashoffset = "0";
+          obs1.disconnect();
+        }
+      });
+    });
+    obs1.observe(document.getElementById("profit_svg"));
+
+    // -------------------------------
+    // 🔹 Fonction update complète
+    // -------------------------------
+    function updateYAxisAndPaths() {
+      const newY = val =>
+        h - padding - ((val - minVal) / (maxVal - minVal)) * (h - padding * 2);
+
+      // --- 1) Labels Y ---
+      document.querySelectorAll("#profit_svg .yLabel").forEach(el => {
+        const f = Number(el.dataset.factor);
+        const val = minVal + f * (maxVal - minVal);
+        el.textContent = Math.round(val);
+        el.setAttribute("y", newY(val) + 4);
+      });
+
+      // --- 2) Grid horizontale ---
+      document.querySelectorAll("#profit_svg .ygrid").forEach((el, i) => {
+        const val = minVal + i * (maxVal - minVal) / 4;
+        const yy = newY(val);
+        el.setAttribute("y1", yy);
+        el.setAttribute("y2", yy);
+      });
+
+      // --- 3) Labels X (années) ---
+      const svgEl = document.getElementById("profit_svg");
+      document.querySelectorAll(".xLabel").forEach(el => el.remove());
+      years.forEach(yr => {
+        const txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        txt.classList.add("xLabel");
+        txt.setAttribute("x", x(yr));
+        txt.setAttribute("y", h - 5);
+        txt.setAttribute("text-anchor", "middle");
+        txt.setAttribute("fill", "#00ff00");
+        txt.setAttribute("font-size", "12");
+        txt.setAttribute("font-family", "monospace");
+        txt.textContent = yr;
+        svgEl.appendChild(txt);
+      });
+
+      // --- 4) Grille verticale ---
+      document.querySelectorAll(".xgrid").forEach(el => el.remove());
+      years.forEach(yr => {
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.classList.add("xgrid");
+        line.setAttribute("x1", x(yr));
+        line.setAttribute("y1", padding);
+        line.setAttribute("x2", x(yr));
+        line.setAttribute("y2", h - padding);
+        line.setAttribute("stroke", "rgba(0,255,0,0.12)");
+        line.setAttribute("stroke-width", 1);
+        svgEl.insertBefore(line, svgEl.firstChild); // derrière les paths
+      });
+
+      // --- 5) Mettre à jour les paths ---
+      const rebuildPath = (yrs, vals) =>
+        vals.map((v, i) => `${i === 0 ? "M" : "L"} ${x(yrs[i])} ${newY(v)}`).join(" ");
+
+      p1.setAttribute("d", rebuildPath(years1, values1));
+      p2.setAttribute("d", rebuildPath(years2, values2));
+
+      // --- 6) Mettre à jour les cercles interactifs ---
+      document.querySelectorAll(".profit-point").forEach((pt, i) => {
+        const yr = years[i];
+        const val = values[i];
+        pt.setAttribute("cx", x(yr));
+        pt.setAttribute("cy", newY(val));
+      });
+    }
+
+    // Révélation du path2
+    let svgIsOnScreen = false;
+    let path1Finished = false;
+    let path2Played = false;
+
+    p1.addEventListener("transitionend", () => {
+      path1Finished = true;
+      tryPlayPath2();
+    });
+
+    const obs2 = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          svgIsOnScreen = true;
+        }
+      });
+    });
+    obs2.observe(document.getElementById("profit_svg"));
+
+    window.addEventListener("scroll", tryPlayPath2);
+
+    function tryPlayPath2() {
+      if (path2Played || !svgIsOnScreen || !path1Finished) return;
+
+      const rect = document.getElementById("profit_svg").getBoundingClientRect();
+      const svgMiddle = rect.top + rect.height / 2;
+      const screenMiddle = window.innerHeight / 2;
+
+      if (svgMiddle < screenMiddle) {
+        // 🔥 élargir X + Y
+        minYear = Math.min(...years);
+        maxYear = Math.max(...years);
+        minVal = Math.min(...values);
+        maxVal = Math.max(...values);
+
+        updateYAxisAndPaths();
+
+        p2.style.transition = "stroke-dashoffset 2.2s linear";
+        p2.style.strokeDashoffset = "0";
+        path2Played = true;
+      }
+    }
+
+  })
+  .catch(err => console.error(err));
+
+
+
+const ctx5 = document.getElementById("ventesConsoles").getContext("2d");
+
+fetch("data.json")
+  .then(res => res.json())
+  .then(json => {
+
+    const rows = json.ventes_nintendo;
+
+    // --- LABELS (années) ---
+    const labels = rows.map(r => r.Année);
+
+    // --- LISTE DES CONSOLES ---
+    const consoles = [
+      "NES", "Game Boy", "SNES", "Nintendo 64",
+      "Game Boy Advance", "NintendoGameCube",
+      "Nintendo DS", "Wii", "Nintendo 3DS",
+      "Wii U", "Nintendo Switch"
+    ];
+
+    // --- PALETTE AUTO ---
+    const baseColors = [
+      "rgba(236,73,73,",
+      "rgba(73,89,236,",
+      "rgba(73,236,89,",
+      "rgba(236,219,73,",
+      "rgba(236,73,210,",
+      "rgba(73,236,210,",
+      "rgba(180,73,236,",
+      "rgba(236,140,73,",
+      "rgba(140,236,73,",
+      "rgba(73,236,162,",
+      "rgba(161,73,236,"
+    ];
+
+    // --- CONSTRUCTION DES DATASETS ---
+    const datasets = consoles.map((consoleName, i) => {
+      const data = rows.map(r => r[consoleName] ?? NaN);
+
+      if (data.every(v => isNaN(v))) return null;
+
+      return {
+        label: consoleName,
+        data,
+        borderColor: baseColors[i] + "1)",
+        tension: 0,
+
+        // --- CARRÉS REMPLIS ---
+        pointStyle: "rect",
+        pointRadius: 4,
+        pointHoverRadius: 7,
+        pointBackgroundColor: baseColors[i] + "1)",
+        pointBorderColor: baseColors[i] + "1)",
+        pointBorderWidth: 0,
+
+        pointHoverBackgroundColor: undefined,
+        pointHoverBorderWidth: 0,
+        pointHoverBorderColor: undefined,
+
+      };
+    }).filter(ds => ds !== null);
+
+
+    // --- CREATION DU GRAPH ---
+    const chart = new Chart(ctx5, {
+      type: "line",
+      data: {
+        labels,
+        datasets
+      },
+      options: {
+        responsive: true,
+
+        // Evite l’effet “hover d’une courbe voisine”
+        interaction: {
+          mode: "nearest",
+          intersect: true
+        },
+
+        plugins: {
+          title: {
+            position: "top",
+            display: true,          // Affiche le titre
+            text: 'Ventes des consoles Nintendo', // Le texte du titre
+            color: '#00ff00',       // Couleur du texte
+            font: {
+              family: 'monospace',
+              weight: 'normal'
+            }
+          },
+
+          legend: {
+            position: "right",
+            labels: {
+              color: "#00ff00",
+              font: { family: "monospace" },
+              usePointStyle: true,
+              pointStyle: "rect"
+            },
+
+            // SURVOL DE LA LEGENDE : baisse des autres courbes + pointer cursor
+            onHover(e, legendItem, legend) {
+              // rend le curseur en pointer quand on survole un item de la légende
+              legend.chart.canvas.style.cursor = 'pointer';
+
+              const index = legendItem.datasetIndex;
+              legend.chart.data.datasets.forEach((ds, i) => {
+                ds.borderColor = ds.borderColor.replace(/[^,]+(?=\))/, i === index ? "1" : "0.4");
+                ds.pointBackgroundColor = ds.pointBackgroundColor.replace(/[^,]+(?=\))/, i === index ? "1" : "0.4");
+              });
+              legend.chart.update();
+            },
+
+            onLeave(e, legendItem, legend) {
+              // remet le curseur par défaut quand on quitte un item de la légende
+              legend.chart.canvas.style.cursor = 'default';
+
+              legend.chart.data.datasets.forEach((ds, i) => {
+                ds.borderColor = ds.borderColor.replace(/[^,]+(?=\))/, "1");
+                ds.pointBackgroundColor = ds.pointBackgroundColor.replace(/[^,]+(?=\))/, "1");
+              });
+              legend.chart.update();
+            },
+
+            onClick: (evt, legendItem, legend) => {
+              const datasetIndex = legendItem.datasetIndex;
+              const dataset = legend.chart.data.datasets[datasetIndex];
+              openModal(dataset.label, dataset);
+            },
+
+          },
+          tooltip: {
+            callbacks: {
+              label: function (item) {
+                return `${item.dataset.label}: ${item.raw.toLocaleString()} unités`;
+              }
+            },
+            backgroundColor: 'rgba(0,0,0,0.9)',
+            titleColor: '#00ff00',
+            bodyColor: '#00ff00',
+            borderColor: '#00ff00',
+            borderWidth: 1,
+            titleFont: { family: 'monospace', weight: 'normal' },
+            bodyFont: { family: 'monospace' },
+            cornerRadius: 0
+          }
+        },
+
+        // --- SURVOL D’UNE COURBE : baisse des autres ---
+        onHover: (event, activeElements) => {
+          const chartInstance = event.chart;
+          const canvas = event.native ? event.native.target : chartInstance.canvas;
+
+          // --- CURSEUR POINTER ---
+          canvas.style.cursor = activeElements.length > 0 ? "pointer" : "default";
+
+          // --- OPACITÉ COURBES ---
+          if (activeElements.length > 0) {
+            const idx = activeElements[0].datasetIndex;
+            chartInstance.data.datasets.forEach((ds, i) => {
+              ds.borderColor = ds.borderColor.replace(/[^,]+(?=\))/, i === idx ? "1" : "0.4");
+              ds.pointBackgroundColor = ds.pointBackgroundColor.replace(/[^,]+(?=\))/, i === idx ? "1" : "0.4");
+            });
+          } else {
+            chartInstance.data.datasets.forEach((ds, i) => {
+              ds.borderColor = ds.borderColor.replace(/[^,]+(?=\))/, "1");
+              ds.pointBackgroundColor = ds.pointBackgroundColor.replace(/[^,]+(?=\))/, "1");
+            });
+          }
+
+          chartInstance.update("none");
+        },
+
+
+        onClick: (evt, activeElements) => {
+          if (activeElements.length > 0) {
+            const chartInstance = evt.chart;
+            const datasetIndex = activeElements[0].datasetIndex;
+            const dataset = chartInstance.data.datasets[datasetIndex];
+            openModal(dataset.label, dataset);
+          }
+        },
+
+
+        scales: {
+          x: {
+            ticks: { color: "#00ff00", font: { family: "monospace" } },
+            grid: { color: "rgba(0,255,0,0.1)" }
+          },
+          y: {
+            ticks: { color: "#00ff00", font: { family: "monospace" } },
+            grid: { color: "rgba(0,255,0,0.1)" }
+          }
+        }
+      }
+
+    });
+
+    window.addEventListener('resize', () => {
+      chart.resize();
+    });
+
+
+  })
+  .catch(err => console.error(err));
 
 
 
 // background
 const grid = document.querySelector('.grid-layer');
 let targetY = 0;
-let currentY = 0;  
+let currentY = 0;
 
 window.addEventListener('scroll', () => {
   targetY = -window.scrollY * 0.1; // delay
 });
 
 function animate() {
-  currentY += (targetY - currentY) * 0.03; 
+  currentY += (targetY - currentY) * 0.03;
   grid.style.backgroundPosition = `0 ${currentY}px`;
   requestAnimationFrame(animate);
 }
@@ -168,8 +777,40 @@ window.addEventListener('scroll', () => {
   clearTimeout(timeout);
   timeout = setTimeout(() => {
     c.classList.remove('walking');
-    c.style.transform = 'translateX(0px)'; 
+    c.style.transform = 'translateX(0px)';
   }, 150);
 
   lastScroll = scrollY;
 });
+
+const body = document.body;
+const tvContainer = document.querySelector('#container_tv');
+const tvSprite = document.querySelector('.anim-tv .tv');
+
+// Bloquer le scroll au départ
+body.style.overflow = 'hidden';
+
+// Créer l'image finale
+const CadreTv = document.createElement('img');
+const EcranTv = document.createElement('img');
+CadreTv.src = 'img/tv/cadre_tv.webp';
+EcranTv.src = 'img/tv/ecran_tv.webp'
+CadreTv.classList.add('tv-final');
+EcranTv.classList.add('tv-final');
+EcranTv.classList.add('ecran_tv');
+tvContainer.appendChild(CadreTv);
+tvContainer.appendChild(EcranTv)
+
+tvSprite.addEventListener('animationend', () => {
+  // Le scroll reste bloqué jusqu'au clic
+  document.addEventListener('click', () => {
+    body.style.overflow = '';        // débloque le scroll
+    tvSprite.style.display = 'none'; // cache la sprite
+    EcranTv.style.display = 'block';
+    CadreTv.style.display = 'block';
+  }, { once: true }); // un seul clic
+});
+
+// window.addEventListener("beforeunload", () => {
+//   window.scrollTo(0, 0);
+// });

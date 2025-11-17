@@ -111,6 +111,7 @@ nav {
     position:fixed;
     z-index: 10;
     width: 20%;
+    min-width: 200px;
     height: 70px;
     top: 20px;
     justify-self: center;
@@ -164,26 +165,6 @@ nav {
   position: absolute;
   z-index: -3;
   align-self: center;
-}
-
-/* Bowser */
-.bowser {
-  position: absolute;
-  /* background-color: #00ff00; */
-  left: 30%;
-  top: 67%;
-  z-index: 5;
-}
-
-.bowser_img {
-  width: 200px;
-  height: auto;
-}
-
-.loser{
-  position: absolute;
-  bottom: 0;
-  left:50%;
 }
 
 
@@ -383,3 +364,24 @@ footer a:hover {
     flex-direction: column;
   }
 }
+
+
+
+/* Bowser */
+/* .bowser {
+  position: absolute;
+  left: 30%;
+  top: 67%;
+  z-index: 5;
+}
+
+.bowser_img {
+  width: 200px;
+  height: auto;
+}
+
+.loser{
+  position: absolute;
+  bottom: 0;
+  left:50%;
+} */

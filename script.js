@@ -536,6 +536,8 @@ fetch("data.json")
         p2.style.strokeDashoffset = "0";
         path2Played = true;
       }
+
+      
     }
 
   })
@@ -803,7 +805,7 @@ CadreTv.classList.add('tv-final');
 EcranTv.classList.add('tv-final');
 EcranTv.classList.add('ecran_tv');
 tvContainer.appendChild(CadreTv);
-tvContainer.appendChild(EcranTv)
+tvContainer.appendChild(EcranTv);
 
 tvSprite.addEventListener('animationend', () => {
   document.addEventListener('click', () => {

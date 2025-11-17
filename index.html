@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Nintendo Statistics</title>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Rubik+Dirt&family=Russo+One&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <title>Nintendo Analytics</title>
+</head>
+  <body id="top">
     <div class="grid-layer"></div>
     <div class="halo-layer"></div>
     <div class="path"></div>
     <div class="container_character"><img src="img/Bonhomme/sprite_down.png" class="character" /></div>
 
     <nav>
+      <a href="#top">NINTENDO ANALYTICS</a>
     </nav>
 
     <div id="intro">
@@ -44,11 +53,7 @@
     </div>
     <div class="section sectionD">
       <h1>En route vers le sommet</h1>
-      <p>Tu es maintenant au deuxième checkpoint : celui de la GameBoy. Nintendo n’en était pas à son coup d’essai et
-        voulait marquer les esprits une seconde fois. C'est alors qu’il sort la GameBoy et c'est là que tout va changer.
-        Elle était tellement populaire qu’elle eut droit à une panoplie de variantes : GameBoy Color, GameBoy Advance,
-        GameBoy micro… C’est aussi sur cette console que les Pokémon ont fait leur arrivée. En bref, c'est le carton
-        plein. </p>
+      <p>Tu es maintenant au deuxième checkpoint : celui de la GameBoy. Nintendo n’en était pas à son coup d’essai et voulait marquer les esprits une seconde fois. C’est pour cela qu’elle conçoit sa nouvelle arme d’élite à ajouter à son arsenal : la Gameboy. Cette dernière ne manque pas d’arguments pour convaincre : un prix bas, une petite taille, mais un processeur très puissant pour l’époque et une grande autonomie. Malgré les quelques réserves de certains supérieurs de Nintendo, cette idée issue des cerveaux de l’équipe Nintendo Research & Development 1 s’avéra être un coup de génie. La console fut un tel succès qu’elle eut droit à une panoplie de variantes : GameBoy Color, GameBoy Advance, GameBoy Micro, GameBoy Light, GameBoy Pocket… Elle casse tous les records. Tout cela sans parler du catalogue de jeux et d’un en particulier qui deviendra la franchise la plus lucrative de l’histoire : Pokemon.</p>
         <img src="img/gameboy.webp" class="img_gameboy" alt="image de gameboy pixellisée" />
     </div>
   </div>
@@ -81,7 +86,9 @@
     </div>
     <div class="graphG graph">
       <div id="profit" class="profit"></div>
+      
     </div>
+    <div class="bowser"><img src="img/bowser.webp" class="bowser_img"/><img src="img/loser.webp" class="loser"/></div>
   </div>
 
     <div class="separation"></div>
@@ -136,9 +143,11 @@
     color: #00ff00;
     font-family: monospace;
   ">
-    <h2 id="modalTitle"></h2>
-    <p id="modalContent"></p>
-    <button onclick="closeModal()" style="
+     <h2 id="modalTitle"></h2>
+      <p id="modalContent"></p>
+      <p id="modalDescrition"></p>
+      <p id="modalGames"></p>
+      <button onclick="closeModal()" style="
       margin-top: 10px;
       padding: 5px 10px;
       background: black;
@@ -146,22 +155,55 @@
       color: #00ff00;
       font-family: monospace;
     ">Fermer</button>
-  </div>
+    </div>
 </div>
 
 <script>
-function openModal(name, dataset) {
-  document.getElementById("modalTitle").innerText = name;
-  document.getElementById("modalContent").innerText =
-    "Total des ventes : " +
-    dataset.data.reduce((a, b) => a + (isNaN(b) ? 0 : b), 0).toLocaleString()
-    + " unités";
-  document.getElementById("consoleModal").style.display = "flex";
-}
+const infos_consoles = [
+      { console: "NES", annee: 1985, jeux: ["Super Mario Bros(1985)", "Metroid (1986)", "Donkey Kong (1985)"] },
+      { console: "Game Boy", annee: 1988, jeux: ["TETRIS (1984)", "Super Mario Land 1 et 2(1989/1992)", "Pokémon Jaune (1998)"] },
+      { console: "SNES", annee: 1990, jeux: ["Super Mario World (1990)", "Super Mario Kart(1992)", "Donkey Kong Country (1995)", "The Legend of Zelda: A Link to the Past(1991)"] },
+      { console: "Nintendo 64", annee: 1996, jeux: ["Super Mario 64 (1996)", "The Legend of Zelda: Ocarina of Time (1998)", "Pokémon Émeraude (2004)", "Pokémon Émeraude (2004)", "Mario Kart: Circuit(2001)"] },
+      { console: "Game Boy Advance", annee: 2001, jeux: ["Pokémon Rubis/Saphir (2002)", "Pokémon Rouge Feu/Vert Feuille (2004)", "Pokémon Émeraude (2004)", "Mario Kart: Circuit(2001)"] },
+      { console: "NintendoGameCube", annee: 2001, jeux: ["Super Smash Bros. Melee (2001)", "Animal Crossing (2001)", " Metroid Prime (2002)", "Mario Party 5 (2003)"] },
+      { console: "Nintendo DS", annee: 2004, jeux: ["New Super Mario Bros (2006)", "Nintendogs: Labrador et ses Amis (2005)", "Mario Kart DS (2005)", "Entraînement cérébral du Dr Kawashima : Littéraire (2008)", "Pokémon Diamant et Perle(2006)"] },
+      { console: "Wii", annee: 2006, jeux: ["Wii Sport (2006)", "Wii Fit (2007)", "Super Mario Galaxy (2007)", "Mario Kart Wii (2008)"] },
+      { console: "Nintendo 3DS", annee: 2011, jeux: ["Mario Kart 7 (2011)", "Animal Crossing : New Leaf (2012)", "Pokemon X et Pokemon Y (2013)", "Tomodachi Life (2013)"] },
+      { console: "Wii U", annee: 2012, jeux: ["Mario Kart 8 (2014)", "Super Mario 3D World (2013)", "New Super Mario Bros. U (2012)", "Super Smash Bros for Wii U(2014)", "Splatoon(2015)"] },
+      { console: "Nintendo Switch", annee: 2017, jeux: ["Mario Kart 8 Deluxe (2017)", " Animal Crossing New Horizon (2020)", "Super Smash Bros Ultimate (2018)", "The Legend of Zelda: Breath of the Wild (2017)", "Super Mario Odyssey (2017)"] }
+    ];
+    function openModal(name, dataset) {
 
-function closeModal() {
-  document.getElementById("consoleModal").style.display = "none";
-}
+      const info = infos_consoles.find(c => c.console === name);
+
+      document.getElementById("modalTitle").innerText = name;
+
+      document.getElementById("modalContent").innerText =
+        "Total des ventes : " +
+        dataset.data.reduce((a, b) => a + (isNaN(b) ? 0 : b), 0).toLocaleString() +
+        " unités";
+
+      document.getElementById("modalDescrition").innerText =
+        "Année de sortie : " + info.annee;
+
+      document.getElementById("modalGames").innerText =
+        "Jeux phares : " + info.jeux;
+
+      document.getElementById("consoleModal").style.display = "flex";
+    }
+
+
+    const modal = document.getElementById("consoleModal");
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
 </script>
 
 

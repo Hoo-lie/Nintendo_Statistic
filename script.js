@@ -83,26 +83,38 @@ fetch("data.json")
     const barWidth = 50;
     const space = 100;
 
-    top3.forEach((item, i) => {
-      const barHeight = (item.valeur / max) * 100;  // Hauteur proportionnelle à la valeur max
-      const x = 50 + i * space;
-      const y = baseY - barHeight;
+    // Ordre 
+const podiumOrder = [1, 0, 2]; // indices du top3
 
-      podiumSVG += `
-        <rect class="bar-vertical"
-              x="${x}" y="${y}"
-              width="${barWidth}" height="${barHeight}">
-        </rect>
+podiumOrder.forEach((idx, i) => {
+  const item = top3[idx];
+  const barHeight = (item.valeur / max) * 100;
 
-        <text x="${x + barWidth / 2}" y="${baseY + 25}" text-anchor="middle">
-          ${item.nom}
-        </text>
+  const x = 50 + i * space;
+  const y = baseY - barHeight;
 
-        <text x="${x + barWidth / 2}" y="${y - 10}" text-anchor="middle">
-          ${item.valeur.toLocaleString()}
-        </text>
-      `;
-    });
+  const podiumNumber = idx === 0 ? 1 : idx === 1 ? 2 : 3;
+
+  podiumSVG += `
+    <rect class="bar-vertical"
+          x="${x}" y="${y}"
+          width="${barWidth}" height="${barHeight}">
+    </rect>
+
+    <text x="${x + barWidth / 2}" y="${baseY + 25}" text-anchor="middle">
+      ${item.nom}
+    </text>
+
+    <text x="${x + barWidth / 2}" y="${y - 10}" text-anchor="middle">
+      ${item.valeur.toLocaleString()}
+    </text>
+
+    <text x="${x + barWidth / 2}" y="${y + barHeight / 2}"
+          text-anchor="middle" font-size="24" font-weight="bold" class="text_podium">
+      ${podiumNumber}
+    </text>
+  `;
+});
 
     podiumSVG += `</svg>`;
 
@@ -338,10 +350,10 @@ fetch("data.json")
     }).join("")}
 
   <!-- COURBE 1 -->
-  <path id="p1" d="${path1}" stroke="#00ff00" fill="none" stroke-width="3"/>
+  <path id="p1" d="${path1}" stroke="#ff0000ff" fill="none" stroke-width="3"/>
 
   <!-- COURBE 2 -->
-  <path id="p2" d="${path2}" stroke="#00ff00" fill="none" stroke-width="3"/>
+  <path id="p2" d="${path2}" stroke="#0077ffff" fill="none" stroke-width="3"/>
 
   <!-- POINTS -->
   ${years.map((yr, i) => `

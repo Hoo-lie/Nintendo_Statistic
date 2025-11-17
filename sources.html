@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles_mentions.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Rubik+Dirt&family=Russo+One&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <title>Nintendo Analytics - Sources</title>
+</head>
+
+<body>
+    <div class="grid-layer"></div>
+    <div class="halo-layer"></div>
+    <!-- <div class="path"></div> -->
+    <!-- <div class="container_character"><img src="img/Bonhomme/sprite_down.png" class="character" /></div>  -->
+
+    <div class="contenu-text">
+        <h1>Sources</h1>
+        <h2>Consoles :</h2>
+        <p>NES (1985)</p>
+        <p>GameBoy (1988) </p>
+        <p>SNES (1990)</p>
+        <p>Nintendo 64 (1996)</p>
+        <p>GameBoy Advance (2001)</p>
+        <p>Nintendo GameCube (2001)</p>
+        <p>Nintendo DS (2005)</p>
+        <p>Wii (2007)</p>
+        <p>Nintendo 3DS (2011)</p>
+        <p>Wii U (2013)</p>
+        <p>Nintendo Switch (2017)</p>
+        <p>PlayStation (1994)</p>
+        <p>PlayStation Vita (2011)</p>
+        <p>Bowser</p><br>
+        <h2>Provenance des données :</h2>
+        <p>Nintendo Co, Ltd.</p>
+        <p>Sega Corporation</p>
+        <p>Sony Interactive Entertainment</p>
+        <p>Atari Inc.</p>
+    </div>
+    <script>
+        const grid = document.querySelector('.grid-layer'); let targetY = 0;
+        let currentY = 0;
+
+        window.addEventListener('scroll', () => {
+            targetY = -window.scrollY * 0.1; // delay
+        });
+
+        function animate() {
+            currentY += (targetY - currentY) * 0.03;
+            grid.style.backgroundPosition = `0 ${currentY}px`;
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+
+</html>

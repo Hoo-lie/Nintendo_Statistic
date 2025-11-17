@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles_mentions.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Rubik+Dirt&family=Russo+One&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <title>Nintendo Analytics - Mentions légales</title>
+</head>
+
+<body>
+    <div class="grid-layer"></div>
+    <div class="halo-layer"></div>
+    <!-- <div class="path"></div> -->
+    <!-- <div class="container_character"><img src="img/Bonhomme/sprite_down.png" class="character" /></div>  -->
+
+    <div class="contenu-text">
+        <h1>Mentions légales</h1>
+        <h2>Éditeur :</h2>
+        <p>Université Gustave Eiffel </p>
+        <p>5 boulevard Descartes, 77420 Champs-sur-Marne </p>
+        <p>Numéro de téléphone : 01 60 95 75 00</p>
+        <p>SIRET : 130 026 123 00013</p><br>
+        <h2>Directeur de la publication : </h2>
+        <p>Gilles Roussel, directeur de l’Université Gustave Eiffel</p><br>
+        <h2>Hébergeur :</h2>
+        <p>Github via Github Pages</p>
+        <p>PRIUS BERNHARDPLEIN 200</p>
+        <p>Pays-Bas</p>
+        <p>Numéro de téléphone : 01 60 95 75 00</p><br>
+        <h2>DPO :</h2>
+        <p>Véronique Juge</p>
+        <p>Université Gustave Eiffel</p>
+        <p>5 boulevard Descartes, 77420 Champs-sur-Marne</p>
+        <p>protectiondesdonnees-dpo@univ-eiffel.fr</p><br>
+        <h2>Rôles :</h2>
+        <p>Lana Kettou : Eléments graphique (logo, sprites, pixel art)</p>
+        <p>Mélina Chassagnon : Développement et UX/UI design</p>
+        <p>Deborah Madissoueke : Modèles 3D</p>
+    </div>
+    <script>
+        const grid = document.querySelector('.grid-layer'); let targetY = 0;
+        let currentY = 0;
+
+        window.addEventListener('scroll', () => {
+            targetY = -window.scrollY * 0.1; // delay
+        });
+
+        function animate() {
+            currentY += (targetY - currentY) * 0.03;
+            grid.style.backgroundPosition = `0 ${currentY}px`;
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+
+</html>

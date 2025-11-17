@@ -1,12 +1,13 @@
+// GRAPHIQUE 1 : ventes de nes
 const ctx = document.getElementById('myChart').getContext('2d');
 
 fetch('data.json')
   .then(res => res.json())
   .then(data => {
-    const rows = data.ventes_nes.filter(r => r.Période !== 'total');
-    const labels = rows.map(r => r.Période);
-    const regions = Object.keys(rows[0]).filter(k => k !== 'Période');
-    const colours = ['#ec4949ff', '#4959ecff', '#5cec49ff'];
+    const rows = data.ventes_nes.filter(r => r.Période !== 'total');  // Filtre les lignes pour enlever les totaux
+    const labels = rows.map(r => r.Période);  // Récupère les labels pour l'axe X (périodes)
+    const regions = Object.keys(rows[0]).filter(k => k !== 'Période');  // Récupère les colonnes à afficher
+    const colours = ['#ec4949ff', '#4959ecff', '#5cec49ff'];  // Couleurs pour les barres
 
     new Chart(ctx, {
       type: 'bar',
@@ -14,8 +15,8 @@ fetch('data.json')
         labels,
         datasets: regions.map((r, i) => ({
           label: r,
-          data: rows.map(row => row[r] || 0),
-          backgroundColor: colours[i % colours.length],
+          data: rows.map(row => row[r] || 0), // Valeurs pour chaque région
+          backgroundColor: colours[i % colours.length], // Couleur de la barre
         }))
       },
       options: {
@@ -51,7 +52,7 @@ fetch('data.json')
   .catch(err => console.error(err));
 
 
-// PODIUM + CLASSEMENT (SVG) — PORTABLE CONSOLES
+// GRAPHIQUE 2 : podium des consoles portables
 fetch("data.json")
   .then(res => res.json())
   .then(json => {
@@ -60,30 +61,30 @@ fetch("data.json")
 
     const data = rows.map(r => ({
       nom: r.console,
-      valeur: Number(r["ventes totales"].replace(/\s+/g, ""))
+      valeur: Number(r["ventes totales"].replace(/\s+/g, "")) // Nettoie les espaces et convertit en nombre
     }));
 
-    const top3 = data.slice(0, 3);
-    const rest = data.slice(3);
-    const max = top3[0].valeur;
+    const top3 = data.slice(0, 3);  // Top 3
+    const rest = data.slice(3); // Le reste
+    const max = top3[0].valeur; // Valeur max pour normaliser les barres
 
-    // dimensions communes pour le podium
+    // dimensions podium
     const w = 350;
     const h = 350;
 
     // SVG 1 : PODIUM
     let podiumSVG = `
    <svg class="svg_podium" viewBox="0 0 350 250">
-
       <text x="0" y="20">Top consoles portables</text>
     `;
 
+    // Position verticale de base, largeur des barres et espacement
     const baseY = 180;
     const barWidth = 50;
     const space = 100;
 
     top3.forEach((item, i) => {
-      const barHeight = (item.valeur / max) * 100;
+      const barHeight = (item.valeur / max) * 100;  // Hauteur proportionnelle à la valeur max
       const x = 50 + i * space;
       const y = baseY - barHeight;
 
@@ -107,12 +108,12 @@ fetch("data.json")
 
     // CLASSEMENT
     const rankingDiv = document.getElementById("liste_classement");
-    rankingDiv.innerHTML = ""; // vide au cas où
+    rankingDiv.innerHTML = ""; // vide la div avant d’ajouter
 
     rest.forEach((item, i) => {
       const barWidthPercent = (item.valeur / max) * 100;
 
-      // Conteneur de l'item
+      // Container de l'item
       const itemDiv = document.createElement("div");
       itemDiv.classList.add("ranking-item");
 
@@ -132,12 +133,14 @@ fetch("data.json")
       rankingDiv.appendChild(itemDiv);
     });
 
-    // Injecter le podium
+    // Ajouter le podium
     document.getElementById("podium").innerHTML = podiumSVG;
 
   })
   .catch(err => console.error(err));
 
+
+// GRAPHIQUE 3 : La guerre des consôles
 const ctx3 = document.getElementById('nintendovssony').getContext('2d');
 
 fetch('data.json')
@@ -161,7 +164,8 @@ fetch('data.json')
             backgroundColor: 'rgba(236,73,73,0.3)',
             fill: true,        // remplit sous la courbe
             tension: 0.3,       // courbes lissées
-            // --- CARRÉS REMPLIS ---
+
+            // points carrés
             pointStyle: "rect",
             pointRadius: 4,
             pointHoverRadius: 7,
@@ -176,7 +180,8 @@ fetch('data.json')
             backgroundColor: 'rgba(73,89,236,0.3)',
             fill: true,
             tension: 0.3,
-            // --- CARRÉS REMPLIS ---
+
+            // points carrés
             pointStyle: "rect",
             pointRadius: 4,
             pointHoverRadius: 7,
@@ -228,7 +233,7 @@ fetch('data.json')
   .catch(err => console.error(err));
 
 
-// Graph 4 : Profits de nintendo
+// GRAPHIQUE 4 : Profits de Nintendo
 fetch("data.json")
   .then(res => res.json())
   .then(json => {
@@ -251,19 +256,19 @@ fetch("data.json")
     const h = 300;
     const padding = 40;
 
-    // SCALING X initial = seulement years1
+    // seulement years1
     let minYear = Math.min(...years1);
     let maxYear = Math.max(...years1);
 
-    // SCALING Y initial = seulement values1
+    // seulement values1
     let minVal = Math.min(...values1);
     let maxVal = Math.max(...values1);
 
-    // SCALE FUNCTIONS
+    // Fonctions de conversion années/valeurs
     let x = yr => padding + ((yr - minYear) / (maxYear - minYear)) * (w - padding * 2);
     let y = val => h - padding - ((val - minVal) / (maxVal - minVal)) * (h - padding * 2);
 
-    // Convertir un tableau → path SVG
+    // Génère un path SVG
     function generatePath(yrs, vals) {
       return yrs.map((yr, i) =>
         `${i === 0 ? "M" : "L"} ${x(yr)} ${y(vals[i])}`
@@ -273,9 +278,7 @@ fetch("data.json")
     const path1 = generatePath(years1, values1);
     const path2 = generatePath(years2, values2);
 
-    // -----------------------------------------------
-    // SVG INITIAL (ne montre que l’échelle de years1)
-    // -----------------------------------------------
+    // svg path1 (créer à l'aide d'un tutoriel libre de droit)
     const svg = `
 <svg id="profit_svg" width="100%" viewBox="0 0 ${w} ${h}" style="overflow: visible;">
 
@@ -359,7 +362,7 @@ fetch("data.json")
 
     document.getElementById("profit").innerHTML = svg;
 
-    // TOOLTIP
+    // tooltip
     const tooltip = document.getElementById("profitTooltip");
     const points = document.querySelectorAll(".profit-point");
 
@@ -389,7 +392,7 @@ fetch("data.json")
       });
     });
 
-    // ANIMATION DES PATHS
+    // animation des paths
     const p1 = document.getElementById("p1");
     const p2 = document.getElementById("p2");
 
@@ -402,7 +405,7 @@ fetch("data.json")
     p2.style.strokeDasharray = len2;
     p2.style.strokeDashoffset = len2;
 
-    // Observer Path1
+    // dléchanchement animation
     const obs1 = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -414,14 +417,12 @@ fetch("data.json")
     });
     obs1.observe(document.getElementById("profit_svg"));
 
-    // -------------------------------
-    // 🔹 Fonction update complète
-    // -------------------------------
+    // fonction update
     function updateYAxisAndPaths() {
       const newY = val =>
         h - padding - ((val - minVal) / (maxVal - minVal)) * (h - padding * 2);
 
-      // --- 1) Labels Y ---
+      // labels Y
       document.querySelectorAll("#profit_svg .yLabel").forEach(el => {
         const f = Number(el.dataset.factor);
         const val = minVal + f * (maxVal - minVal);
@@ -429,7 +430,7 @@ fetch("data.json")
         el.setAttribute("y", newY(val) + 4);
       });
 
-      // --- 2) Grid horizontale ---
+      // Grid horizontale
       document.querySelectorAll("#profit_svg .ygrid").forEach((el, i) => {
         const val = minVal + i * (maxVal - minVal) / 4;
         const yy = newY(val);
@@ -437,7 +438,7 @@ fetch("data.json")
         el.setAttribute("y2", yy);
       });
 
-      // --- 3) Labels X (années) ---
+      // Labels X
       const svgEl = document.getElementById("profit_svg");
       document.querySelectorAll(".xLabel").forEach(el => el.remove());
       years.forEach(yr => {
@@ -453,7 +454,7 @@ fetch("data.json")
         svgEl.appendChild(txt);
       });
 
-      // --- 4) Grille verticale ---
+      // Grid verticale
       document.querySelectorAll(".xgrid").forEach(el => el.remove());
       years.forEach(yr => {
         const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
@@ -464,17 +465,17 @@ fetch("data.json")
         line.setAttribute("y2", h - padding);
         line.setAttribute("stroke", "rgba(0,255,0,0.12)");
         line.setAttribute("stroke-width", 1);
-        svgEl.insertBefore(line, svgEl.firstChild); // derrière les paths
+        svgEl.insertBefore(line, svgEl.firstChild);
       });
 
-      // --- 5) Mettre à jour les paths ---
+      // update des paths
       const rebuildPath = (yrs, vals) =>
         vals.map((v, i) => `${i === 0 ? "M" : "L"} ${x(yrs[i])} ${newY(v)}`).join(" ");
 
       p1.setAttribute("d", rebuildPath(years1, values1));
       p2.setAttribute("d", rebuildPath(years2, values2));
 
-      // --- 6) Mettre à jour les cercles interactifs ---
+      //update update
       document.querySelectorAll(".profit-point").forEach((pt, i) => {
         const yr = years[i];
         const val = values[i];
@@ -483,7 +484,7 @@ fetch("data.json")
       });
     }
 
-    // Révélation du path2
+    // déclanchement animation path2
     let svgIsOnScreen = false;
     let path1Finished = false;
     let path2Played = false;
@@ -512,7 +513,6 @@ fetch("data.json")
       const screenMiddle = window.innerHeight / 2;
 
       if (svgMiddle < screenMiddle) {
-        // 🔥 élargir X + Y
         minYear = Math.min(...years);
         maxYear = Math.max(...years);
         minVal = Math.min(...values);
@@ -530,7 +530,7 @@ fetch("data.json")
   .catch(err => console.error(err));
 
 
-
+// GRAPHIQUE 5 : ventes consoles Nintendo
 const ctx5 = document.getElementById("ventesConsoles").getContext("2d");
 
 fetch("data.json")
@@ -538,19 +538,13 @@ fetch("data.json")
   .then(json => {
 
     const rows = json.ventes_nintendo;
-
-    // --- LABELS (années) ---
     const labels = rows.map(r => r.Année);
-
-    // --- LISTE DES CONSOLES ---
     const consoles = [
       "NES", "Game Boy", "SNES", "Nintendo 64",
       "Game Boy Advance", "NintendoGameCube",
       "Nintendo DS", "Wii", "Nintendo 3DS",
       "Wii U", "Nintendo Switch"
     ];
-
-    // --- PALETTE AUTO ---
     const baseColors = [
       "rgba(236,73,73,",
       "rgba(73,89,236,",
@@ -565,7 +559,6 @@ fetch("data.json")
       "rgba(161,73,236,"
     ];
 
-    // --- CONSTRUCTION DES DATASETS ---
     const datasets = consoles.map((consoleName, i) => {
       const data = rows.map(r => r[consoleName] ?? NaN);
 
@@ -577,7 +570,7 @@ fetch("data.json")
         borderColor: baseColors[i] + "1)",
         tension: 0,
 
-        // --- CARRÉS REMPLIS ---
+        // points carrés
         pointStyle: "rect",
         pointRadius: 4,
         pointHoverRadius: 7,
@@ -593,7 +586,7 @@ fetch("data.json")
     }).filter(ds => ds !== null);
 
 
-    // --- CREATION DU GRAPH ---
+    // création du graph
     const chart = new Chart(ctx5, {
       type: "line",
       data: {
@@ -603,7 +596,7 @@ fetch("data.json")
       options: {
         responsive: true,
 
-        // Evite l’effet “hover d’une courbe voisine”
+        // effet hover sur les courbes
         interaction: {
           mode: "nearest",
           intersect: true
@@ -612,9 +605,9 @@ fetch("data.json")
         plugins: {
           title: {
             position: "top",
-            display: true,          // Affiche le titre
-            text: 'Ventes des consoles Nintendo', // Le texte du titre
-            color: '#00ff00',       // Couleur du texte
+            display: true,
+            text: 'Ventes des consoles Nintendo',
+            color: '#00ff00',
             font: {
               family: 'monospace',
               weight: 'normal'
@@ -630,9 +623,8 @@ fetch("data.json")
               pointStyle: "rect"
             },
 
-            // SURVOL DE LA LEGENDE : baisse des autres courbes + pointer cursor
+            // survol légende
             onHover(e, legendItem, legend) {
-              // rend le curseur en pointer quand on survole un item de la légende
               legend.chart.canvas.style.cursor = 'pointer';
 
               const index = legendItem.datasetIndex;
@@ -678,15 +670,14 @@ fetch("data.json")
           }
         },
 
-        // --- SURVOL D’UNE COURBE : baisse des autres ---
+        // hover d'une courbe
         onHover: (event, activeElements) => {
           const chartInstance = event.chart;
           const canvas = event.native ? event.native.target : chartInstance.canvas;
 
-          // --- CURSEUR POINTER ---
           canvas.style.cursor = activeElements.length > 0 ? "pointer" : "default";
 
-          // --- OPACITÉ COURBES ---
+          // opacité courbes
           if (activeElements.length > 0) {
             const idx = activeElements[0].datasetIndex;
             chartInstance.data.datasets.forEach((ds, i) => {
@@ -712,7 +703,6 @@ fetch("data.json")
             openModal(dataset.label, dataset);
           }
         },
-
 
         scales: {
           x: {
@@ -783,6 +773,8 @@ window.addEventListener('scroll', () => {
   lastScroll = scrollY;
 });
 
+
+// TV ANIMATION
 const body = document.body;
 const tvContainer = document.querySelector('#container_tv');
 const tvSprite = document.querySelector('.anim-tv .tv');
@@ -802,7 +794,6 @@ tvContainer.appendChild(CadreTv);
 tvContainer.appendChild(EcranTv)
 
 tvSprite.addEventListener('animationend', () => {
-  // Le scroll reste bloqué jusqu'au clic
   document.addEventListener('click', () => {
     body.style.overflow = '';        // débloque le scroll
     tvSprite.style.display = 'none'; // cache la sprite
@@ -811,6 +802,6 @@ tvSprite.addEventListener('animationend', () => {
   }, { once: true }); // un seul clic
 });
 
-// window.addEventListener("beforeunload", () => {
-//   window.scrollTo(0, 0);
-// });
+window.addEventListener("beforeunload", () => {
+  window.scrollTo(0, 0);
+});

@@ -145,7 +145,7 @@ nav {
 
 @keyframes tvOn {
   from { transform: translateX(0px); }
-  to   { transform: translateX(-13779px); }
+  to   { transform: translateX(-13759px); }
 }
 
 .anim-tv .tv {

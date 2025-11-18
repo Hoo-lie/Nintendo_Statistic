@@ -46,7 +46,7 @@ p {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 50% 50%, rgba(0,255,100,0.15), transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(0, 255, 100, 0.15), transparent 70%);
   mix-blend-mode: color-dodge;
   animation: shimmer 8s ease-in-out infinite alternate;
   z-index: -2;
@@ -274,7 +274,7 @@ svg text {
 
 .sectionD {
   order: 2;
-  text-align: right;
+  text-align: left;
 }
 
 .section img{

@@ -7,6 +7,10 @@ body {
   position: relative;
 }
 
+*::selection{
+  color: black;
+  background-color: #00ff00;
+}
 
 /* barre de scroll */
 * {    
@@ -117,7 +121,6 @@ nav {
     justify-self: center;
     background-color: black;
     border: solid 2px #00ff00;
-    /* display: none; */
     font-family: "Russo one", sans-serif;
     text-align: center;
     align-content: center;
@@ -364,6 +367,30 @@ footer a:hover {
     flex-direction: column;
   }
 }
+
+
+.contenu-text {
+  background-color: black;
+  color: #00ff00;
+  border: solid 2px #00ff00;
+  height: auto;
+  width: clamp(400px, 90vw, 800px);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+  padding: clamp(20px, 3%, 100px);
+}
+
+.contenu-text h1 {
+  font-family: "Russo one", sans-serif;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* .contenu-text h2, .contenu-text p {
+    margin-left: 100px;
+} */
+
 
 
 

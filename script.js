@@ -1,3 +1,8 @@
+import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module.js";
+import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js";
+
+
 // GRAPHIQUE 1 : ventes de nes
 const ctx = document.getElementById('myChart').getContext('2d');
 
@@ -581,6 +586,10 @@ fetch("data.json")
       return {
         label: consoleName,
         data,
+        baseColor: baseColors[i] + "1)",
+        dimColor: baseColors[i] + "0.4)",
+        borderWidth: 1,
+
         borderColor: baseColors[i] + "1)",
         tension: 0,
 
@@ -591,11 +600,6 @@ fetch("data.json")
         pointBackgroundColor: baseColors[i] + "1)",
         pointBorderColor: baseColors[i] + "1)",
         pointBorderWidth: 0,
-
-        pointHoverBackgroundColor: undefined,
-        pointHoverBorderWidth: 0,
-        pointHoverBorderColor: undefined,
-
       };
     }).filter(ds => ds !== null);
 
@@ -610,7 +614,6 @@ fetch("data.json")
       options: {
         responsive: true,
 
-        // effet hover sur les courbes
         interaction: {
           mode: "nearest",
           intersect: true
@@ -642,22 +645,27 @@ fetch("data.json")
               legend.chart.canvas.style.cursor = 'pointer';
 
               const index = legendItem.datasetIndex;
+
               legend.chart.data.datasets.forEach((ds, i) => {
-                ds.borderColor = ds.borderColor.replace(/[^,]+(?=\))/, i === index ? "1" : "0.4");
-                ds.pointBackgroundColor = ds.pointBackgroundColor.replace(/[^,]+(?=\))/, i === index ? "1" : "0.4");
+                ds.borderColor = i === index ? ds.baseColor : ds.dimColor;
+                ds.pointBackgroundColor = i === index ? ds.baseColor : ds.dimColor;
+                ds.borderWidth = i === index ? 3 : 1;
               });
-              legend.chart.update();
+
+              legend.chart.update("none");
             },
 
             onLeave(e, legendItem, legend) {
-              // remet le curseur par défaut quand on quitte un item de la légende
               legend.chart.canvas.style.cursor = 'default';
 
-              legend.chart.data.datasets.forEach((ds, i) => {
-                ds.borderColor = ds.borderColor.replace(/[^,]+(?=\))/, "1");
-                ds.pointBackgroundColor = ds.pointBackgroundColor.replace(/[^,]+(?=\))/, "1");
+              legend.chart.data.datasets.forEach((ds) => {
+                ds.borderColor = ds.baseColor;
+                ds.pointBackgroundColor = ds.baseColor;
+                ds.borderWidth = 1;
+                
               });
-              legend.chart.update();
+
+              legend.chart.update("none");
             },
 
             onClick: (evt, legendItem, legend) => {
@@ -665,8 +673,8 @@ fetch("data.json")
               const dataset = legend.chart.data.datasets[datasetIndex];
               openModal(dataset.label, dataset);
             },
-
           },
+
           tooltip: {
             callbacks: {
               label: function (item) {
@@ -687,27 +695,30 @@ fetch("data.json")
         // hover d'une courbe
         onHover: (event, activeElements) => {
           const chartInstance = event.chart;
-          const canvas = event.native ? event.native.target : chartInstance.canvas;
+          const canvas = chartInstance.canvas;
 
           canvas.style.cursor = activeElements.length > 0 ? "pointer" : "default";
 
-          // opacité courbes
           if (activeElements.length > 0) {
             const idx = activeElements[0].datasetIndex;
+
             chartInstance.data.datasets.forEach((ds, i) => {
-              ds.borderColor = ds.borderColor.replace(/[^,]+(?=\))/, i === idx ? "1" : "0.4");
-              ds.pointBackgroundColor = ds.pointBackgroundColor.replace(/[^,]+(?=\))/, i === idx ? "1" : "0.4");
+              ds.borderWidth = i === idx ? 3 : 1;
+              ds.pointRadius = i === idx ? 7 : 4;
+              ds.borderColor = i === idx ? ds.baseColor : ds.dimColor;
+              ds.pointBackgroundColor = i === idx ? ds.baseColor : ds.dimColor;
             });
           } else {
-            chartInstance.data.datasets.forEach((ds, i) => {
-              ds.borderColor = ds.borderColor.replace(/[^,]+(?=\))/, "1");
-              ds.pointBackgroundColor = ds.pointBackgroundColor.replace(/[^,]+(?=\))/, "1");
+            chartInstance.data.datasets.forEach((ds) => {
+              ds.borderWidth = 1;
+              ds.pointRadius = 4;
+              ds.borderColor = ds.baseColor;
+              ds.pointBackgroundColor = ds.baseColor;
             });
           }
 
           chartInstance.update("none");
         },
-
 
         onClick: (evt, activeElements) => {
           if (activeElements.length > 0) {
@@ -732,14 +743,181 @@ fetch("data.json")
 
     });
 
+
+      // Modèles 3D
+let scene, camera, renderer, VAG;
+let animationId = null;
+
+function init(modelName) {
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color("#111");
+
+
+    // caméra
+    camera = new THREE.PerspectiveCamera(
+        40,
+        window.innerWidth / window.innerHeight,
+        1,
+        5000
+    );
+    camera.position.set(0, 0, 10);
+
+    // lumière
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    directionalLight.position.set(1, 1, 1).normalize();
+    scene.add(directionalLight);
+
+    // textures
+    const envTexture = new THREE.CubeTextureLoader().load([
+        "https://threejs.org/examples/textures/cube/Bridge2/posx.jpg",
+        "https://threejs.org/examples/textures/cube/Bridge2/negx.jpg",
+        "https://threejs.org/examples/textures/cube/Bridge2/posy.jpg",
+        "https://threejs.org/examples/textures/cube/Bridge2/negy.jpg",
+        "https://threejs.org/examples/textures/cube/Bridge2/posz.jpg",
+        "https://threejs.org/examples/textures/cube/Bridge2/negz.jpg"
+    ]);
+    scene.environment = envTexture;
+
+    //render
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+
+    const modalD = document.querySelector(".modalD");
+    const rect = modalD.getBoundingClientRect();
+
+    // Attendre que le modal ait une vraie taille
+    if (rect.width === 0 || rect.height === 0) {
+        setTimeout(() => init(modelName), 50);
+        return;
+    }
+
+    modalD.appendChild(renderer.domElement);
+    renderer.setSize(rect.width, rect.height);
+
+    camera.aspect = rect.width / rect.height;
+    camera.updateProjectionMatrix();
+
+    // charger le modèle
+    const loader = new GLTFLoader();
+    loader.load(
+        `models3D/${modelName}.gltf`,
+        (gltf) => {
+            VAG = gltf.scene;
+
+            VAG.scale.set(0.3, 0.3, 0.3);
+            VAG.position.set(0, 0, 0);
+
+            VAG.traverse((child) => {
+                if (child.isMesh && child.material) {
+                    child.material.metalness = 0.2;
+                    child.material.roughness = 0;
+                    child.material.envMapIntensity = 0.8;
+                    child.material.clearcoat = 0.2;
+                    child.material.clearcoatRoughness = 0.1;
+                    child.material.needsUpdate = true;
+                }
+            });
+
+            scene.add(VAG);
+            startAnimation();
+        },
+        undefined,
+        (err) => console.error("Erreur chargement modèle :", err)
+    );
+
+    window.addEventListener("resize", onWindowResize);
+}
+
+// adapte la taille de la fenêtre
+function onWindowResize() {
+    const modalD = document.querySelector(".modalD");
+    const rect = modalD.getBoundingClientRect();
+
+    if (!renderer) return;
+
+    camera.aspect = rect.width / rect.height;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(rect.width, rect.height);
+}
+
+// animation
+function startAnimation() {
+    function animate3D() {
+        animationId = requestAnimationFrame(animate3D);
+
+        if (VAG) {
+            VAG.rotation.y += 0.005;
+            VAG.rotation.x = 0.5;
+        }
+
+        renderer.render(scene, camera);
+    }
+
+    animate3D();
+}
+
+function stopAnimation() {
+    if (animationId) cancelAnimationFrame(animationId);
+    animationId = null;
+}
+
+// ouverture modal
+function openModal(name, dataset) {
+    const info = json.infos_consoles.find((c) => c.console === name);
+    const modelName = info.model3D;
+
+    document.getElementById("modalTitle").innerText = name;
+
+    document.getElementById("modalContent").innerText =
+        "Total des ventes : " +
+        dataset.data.reduce((a, b) => a + (isNaN(b) ? 0 : b), 0).toLocaleString() +
+        " unités";
+
+    document.getElementById("modalDescrition").innerText =
+        "Année de sortie : " + info.annee;
+
+    document.getElementById("modalGames").innerText =
+        "Jeux phares : " + info.jeux;
+
+    const modal = document.getElementById("consoleModal");
+    modal.style.display = "flex";
+
+    const modalD = document.querySelector(".modalD");
+
+    // Supprimer ancien canvas + animation
+    const oldCanvas = modalD.querySelector("canvas");
+    if (oldCanvas) oldCanvas.remove();
+    stopAnimation();
+
+    // délai pour que le modal se rende correctement
+    setTimeout(() => {
+        init(modelName);
+    }, 50);
+}
+
+      const modal = document.getElementById("consoleModal");
+      function closeModal() {
+        modal.style.display = "none";
+      }
+
+      const btn_modal = document.getElementById("btn_modal");
+      btn_modal.addEventListener("click", function (event) {
+        closeModal();
+      });
+
+      modal.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
     window.addEventListener('resize', () => {
       chart.resize();
     });
-
-
   })
   .catch(err => console.error(err));
-
 
 
 // background
@@ -751,13 +929,13 @@ window.addEventListener('scroll', () => {
   targetY = -window.scrollY * 0.1; // delay
 });
 
-function animate() {
+function animateBackground() {
   currentY += (targetY - currentY) * 0.03;
   grid.style.backgroundPosition = `0 ${currentY}px`;
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateBackground);
 }
 
-animate();
+animateBackground();
 
 
 // Character animation
@@ -788,7 +966,7 @@ window.addEventListener('scroll', () => {
 });
 
 
-// TV ANIMATION
+// tv animation
 const body = document.body;
 const tvContainer = document.querySelector('#container_tv');
 const tvSprite = document.querySelector('.anim-tv .tv');
@@ -819,3 +997,5 @@ tvSprite.addEventListener('animationend', () => {
 window.addEventListener("beforeunload", () => {
   window.scrollTo(0, 0);
 });
+
+

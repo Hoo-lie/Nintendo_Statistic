@@ -784,5 +784,130 @@
     "Wii U": null,
     "Nintendo Switch": 10800000
   }
-]
+],
+"infos_consoles" : [
+        {
+          "console": "NES",
+          "annee": 1985,
+          "jeux": [
+            "Super Mario Bros(1985)",
+            "Metroid (1986)",
+            "Donkey Kong (1985)"
+          ],
+          "model3D" : "NES"
+        },
+        {
+          "console": "Game Boy",
+          "annee": 1988,
+          "jeux": [
+            "TETRIS (1984)",
+            "Super Mario Land 1 et 2(1989/1992)",
+            "Pokémon Jaune (1998)"
+          ],
+          "model3D" : "GameBoy"
+        },
+        {
+          "console": "SNES",
+          "annee": 1990,
+          "jeux": [
+            "Super Mario World (1990)",
+            "Super Mario Kart(1992)",
+            "Donkey Kong Country (1995)",
+            "The Legend of Zelda: A Link to the Past(1991)"
+          ],
+          "model3D" : "SNES"
+        },
+        {
+          "console": "Nintendo 64",
+          "annee": 1996,
+          "jeux": [
+            "Super Mario 64 (1996)",
+            "The Legend of Zelda: Ocarina of Time (1998)",
+            "Pokémon Émeraude (2004)",
+            "Pokémon Émeraude (2004)",
+            "Mario Kart: Circuit(2001)"
+          ],
+          "model3D" : "N64"
+        },
+        {
+          "console": "Game Boy Advance",
+          "annee": 2001,
+          "jeux": [
+            "Pokémon Rubis/Saphir (2002)",
+            "Pokémon Rouge Feu/Vert Feuille (2004)",
+            "Pokémon Émeraude (2004)",
+            "Mario Kart: Circuit(2001)"
+          ],
+          "model3D" : "GameBoy_Advance"
+        },
+        {
+          "console": "NintendoGameCube",
+          "annee": 2001,
+          "jeux": [
+            "Super Smash Bros. Melee (2001)",
+            "Animal Crossing (2001)",
+            " Metroid Prime (2002)",
+            "Mario Party 5 (2003)"
+          ],
+          "model3D" : "GameCube"
+        },
+        {
+          "console": "Nintendo DS",
+          "annee": 2004,
+          "jeux": [
+            "New Super Mario Bros (2006)",
+            "Nintendogs: Labrador et ses Amis (2005)",
+            "Mario Kart DS (2005)",
+            "Entraînement cérébral du Dr Kawashima : Littéraire (2008)",
+            "Pokémon Diamant et Perle(2006)"
+          ],
+          "model3D" : "DS"
+        },
+        {
+          "console": "Wii",
+          "annee": 2006,
+          "jeux": [
+            "Wii Sport (2006)",
+            "Wii Fit (2007)",
+            "Super Mario Galaxy (2007)",
+            "Mario Kart Wii (2008)"
+          ],
+          "model3D" : "Wii"
+        },
+        {
+          "console": "Nintendo 3DS",
+          "annee": 2011,
+          "jeux": [
+            "Mario Kart 7 (2011)",
+            "Animal Crossing : New Leaf (2012)",
+            "Pokemon X et Pokemon Y (2013)",
+            "Tomodachi Life (2013)"
+          ],
+          "model3D" : "3DS"
+        },
+        {
+          "console": "Wii U",
+          "annee": 2012,
+          "jeux": [
+            "Mario Kart 8 (2014)",
+            "Super Mario 3D World (2013)",
+            "New Super Mario Bros. U (2012)",
+            "Super Smash Bros for Wii U(2014)",
+            "Splatoon(2015)"
+          ],
+          "model3D" : "wiiU"
+        },
+        {
+          "console": "Nintendo Switch",
+          "annee": 2017,
+          "jeux": [
+            "Mario Kart 8 Deluxe (2017)",
+            " Animal Crossing New Horizon (2020)",
+            "Super Smash Bros Ultimate (2018)",
+            "The Legend of Zelda: Breath of the Wild (2017)",
+            "Super Mario Odyssey (2017)"
+          ],
+          "model3D" : "Switch"
+        }
+      ]
 }

@@ -745,7 +745,7 @@ fetch("data.json")
 
 
       // Modèles 3D
-let scene, camera, renderer, VAG;
+let scene, camera, renderer, console3D;
 let animationId = null;
 
 function init(modelName) {
@@ -804,12 +804,12 @@ function init(modelName) {
     loader.load(
         `models3D/${modelName}.gltf`,
         (gltf) => {
-            VAG = gltf.scene;
+            console3D = gltf.scene;
 
-            VAG.scale.set(0.3, 0.3, 0.3);
-            VAG.position.set(0, 0, 0);
+            console3D.scale.set(0.3, 0.3, 0.3);
+            console3D.position.set(0, 0, 0);
 
-            VAG.traverse((child) => {
+            console3D.traverse((child) => {
                 if (child.isMesh && child.material) {
                     child.material.metalness = 0.2;
                     child.material.roughness = 0;
@@ -820,7 +820,7 @@ function init(modelName) {
                 }
             });
 
-            scene.add(VAG);
+            scene.add(console3D);
             startAnimation();
         },
         undefined,
@@ -848,9 +848,9 @@ function startAnimation() {
     function animate3D() {
         animationId = requestAnimationFrame(animate3D);
 
-        if (VAG) {
-            VAG.rotation.y += 0.005;
-            VAG.rotation.x = 0.5;
+        if (console3D) {
+            console3D.rotation.y += 0.005;
+            console3D.rotation.x = 0.5;
         }
 
         renderer.render(scene, camera);
